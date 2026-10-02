@@ -56,6 +56,8 @@ for (const [name, c] of Object.entries(T)) {
   });
 }
 
+pres.defineSlideMaster({ title: "PLAIN", background: { color: "111418" }, objects: [] });
+
 // ---------- helpers ----------
 let sid = 0;
 const nm = (s) => `${s}-${++sid}`;
@@ -95,10 +97,10 @@ function linkText(s, label, url, x, y, w, h, color) {
 // 01 표지: 차가운 출근길(S#1)과 노을의 퇴근길(S#6)을 좌우로 나란히
 pres.addSection({ title: "작품" });
 {
-  const s = pres.addSlide({ masterName: "COLD", sectionTitle: "작품" });
+  const s = pres.addSlide({ masterName: "PLAIN", sectionTitle: "작품" });
   s.background = { color: "111418" };
-  s.addImage({ path: path.join(IMG, "s1-1.jpg"), x: 0, y: 0, w: W / 2, h: H, sizing: { type: "cover", w: W / 2, h: H }, altText: "출근길 지하철의 수현", objectName: nm("cover-cold") });
-  s.addImage({ path: path.join(IMG, "s6-4.jpg"), x: W / 2, y: 0, w: W / 2, h: H, sizing: { type: "cover", w: W / 2, h: H }, altText: "노을 속 수현의 미소", objectName: nm("cover-warm") });
+  s.addImage({ path: path.join(IMG, "cover_left.jpg"), x: 0, y: 0, w: W / 2, h: H, altText: "출근길 지하철의 수현", objectName: nm("cover-cold") });
+  s.addImage({ path: path.join(IMG, "cover_right.jpg"), x: W / 2, y: 0, w: W / 2, h: H, altText: "노을 속 수현의 미소", objectName: nm("cover-warm") });
   s.addShape(pres.shapes.RECTANGLE, { x: 0, y: 2.55, w: W, h: 2.55, fill: { color: "000000", transparency: 40 }, line: { type: "none" }, objectName: nm("cover-band") });
   img(s, "title", 3.9, 2.75, 5.5, 1.45, { alt: "지금이라는 문 제목 캘리그라피" });
   t(s, "AI 애니메이션 포트폴리오 2026", { x: MX, y: 4.35, w: W - 2 * MX, h: 0.35, fontSize: 13, bold: true, color: "E3E8EC", align: "center" });
@@ -430,8 +432,8 @@ pres.addSection({ title: "결과물 · IP" });
 
 // 20 엔딩: 노을의 퇴근길 위에 엔딩 대사
 {
-  const s = pres.addSlide({ masterName: "WARM", sectionTitle: "결과물 · IP" });
-  s.addImage({ path: path.join(IMG, "s6-5.jpg"), x: 0, y: 0, w: W, h: H, sizing: { type: "cover", w: W, h: H }, altText: "노을 진 거리", objectName: nm("ending-bg") });
+  const s = pres.addSlide({ masterName: "PLAIN", sectionTitle: "결과물 · IP" });
+  s.addImage({ path: path.join(IMG, "s6-5.jpg"), x: 0, y: 0, w: W, h: H, altText: "노을 진 거리", objectName: nm("ending-bg") });
   s.addShape(pres.shapes.RECTANGLE, { x: 0, y: 0, w: W, h: H, fill: { color: "1A110C", transparency: 35 }, line: { type: "none" }, objectName: nm("ending-shade") });
   t(s, "00:02:07", { x: MX, y: 0.45, w: 3, h: 0.3, fontFace: TC, fontSize: 11, bold: true, color: "FFD9B8" });
   t(s, "「지금... 이 순간.」", { x: MX, y: 1.4, w: 12, h: 1.1, fontSize: 40, bold: true, color: "FFFFFF", valign: "middle" });

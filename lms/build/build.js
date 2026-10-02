@@ -61,6 +61,8 @@ pres.defineSlideMaster({
   ],
 });
 
+pres.defineSlideMaster({ title: "DARK_PLAIN", background: { color: INK }, objects: [] });
+
 // ---------- helpers ----------
 let shapeId = 0;
 const nm = (s) => `${s}-${++shapeId}`;
@@ -128,7 +130,7 @@ function placeholderFrame(slide, x, y, w, h, label) {
 // 01 표지
 pres.addSection({ title: "소개" });
 {
-  const s = pres.addSlide({ masterName: "DARK", sectionTitle: "소개" });
+  const s = pres.addSlide({ masterName: "DARK_PLAIN", sectionTitle: "소개" });
   img(s, "logo", MX, 0.75, 3.3, 2.2, "곰나나 로고");
   text(s, "AI 애니메이션 · 캐릭터 IP 포트폴리오 2026", { x: MX, y: 3.15, w: 5.2, h: 0.35, fontSize: 13, color: SKY, bold: true });
   text(s, "곰나나", { x: MX, y: 3.6, w: 5.6, h: 0.45, fontSize: 18, bold: true, color: WHITE });
@@ -593,7 +595,7 @@ pres.addSection({ title: "결과물 · IP 확장" });
 
 // 22 엔딩
 {
-  const s = pres.addSlide({ masterName: "DARK", sectionTitle: "결과물 · IP 확장" });
+  const s = pres.addSlide({ masterName: "DARK_PLAIN", sectionTitle: "결과물 · IP 확장" });
   text(s, "「근데 저녁은 뭐 먹지?」", { x: MX, y: 0.75, w: 7.2, h: 1.0, fontSize: 36, bold: true, color: WHITE, valign: "middle" });
   text(s, "다음 에피소드로 자연스럽게 연결", { x: MX, y: 1.8, w: 7, h: 0.4, fontSize: 14, color: SKY });
   const f = framedImg(s, "0802", 8.2, 0.75, 4.53, 2.6, { fill: SKY, pad: 0.08, alt: "뒷모습 와이드 엔딩" });
