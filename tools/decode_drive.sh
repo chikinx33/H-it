@@ -5,8 +5,8 @@ OUT="$1"; MIN="$2"; mkdir -p "$OUT"
 D=/root/.claude/projects/-home-user-H-it/22044d0b-fd83-5b89-8123-76ac982323f9/tool-results
 for f in $D/mcp-Google_Drive-download_file_content-*.txt; do
   ts=$(basename "$f" .txt | sed 's/.*-//'); [ "$ts" -lt "$MIN" ] && continue
-  m=$(jq -r .mimeType "$f"); case "$m" in image/png) e=png;; image/jpeg) e=jpg;; image/gif) e=gif;; video/mp4) e=mp4;; *) continue;; esac
+  m=$(jq -r .mimeType "$f"); case "$m" in image/png) e=png;; image/jpeg) e=jpg;; image/gif) e=gif;; video/mp4) e=mp4;; application/pdf) e=pdf;; *) continue;; esac
   t=$(jq -r .title "$f" | sed 's/ *$//'); base="${t%.*}"; dest="$OUT/$base.$e"
   [ -f "$dest" ] && continue
-  jq -r .content "$f" | base64 -d > "$dest" && echo "$base.$e $(identify -format '%wx%h' "$dest" 2>/dev/null)"
+  jq -r .content "$f" | base64 -d > "$dest" && { case "$e" in png|jpg|gif) echo "$base.$e $(identify -format "%wx%h " "$dest[0]" 2>/dev/null)";; *) echo "$base.$e";; esac; }
 done
