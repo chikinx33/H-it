@@ -1,0 +1,8 @@
+{
+  "name": "kks-portfolio-build",
+  "private": true,
+  "description": "김경수 포트폴리오 덱 빌드 (node build.js)",
+  "dependencies": {
+    "pptxgenjs": "3.12.0"
+  }
+}

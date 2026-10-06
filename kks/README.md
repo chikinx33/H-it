@@ -31,3 +31,19 @@
 - 숏폼 광고: 스토리보드 상단 'Shapes and Friends'는 양식 기본값으로 보여 제목으로 쓰지 않고, 엔딩 카피의 제품명 「어른폰 십팔 Pro」를 작품명으로 사용. 작가가 정한 제목이 있으면 교체
 - 광고 콘티에 실제 매장 간판 · 애플 스토어 사진 · 실존 코미디언 얼굴 밈(정류장 광고판 컷)이 참고 이미지로 들어 있음. 공개용이면 초상권 / 상표 확인 필요(반전 구조 슬라이드에는 해당 컷 미사용)
 - 엔딩 연락처는 작가가 직접 기입
+
+## 집에서 수정 / 빌드하기
+- 준비: Git, Node.js 18 이상, Python 3(검사용), Claude Code. 이미지를 새로 가공할 때만 ImageMagick과 bash(Windows는 WSL 또는 Git Bash)
+- 빌드
+  ```bash
+  cd kks/build
+  npm install
+  node build.js
+  cd ../..
+  pip install python-pptx pillow
+  python3 tools/check_deck.py kks/김경수_포트폴리오.pptx
+  ```
+- `PPTX_SKILL` 환경변수가 없으면 PowerPoint 테마 색 지정 단계만 건너뜀(슬라이드 모양은 동일)
+- 문구 · 배치 수정은 `build/build.js`에서. PPTX를 PowerPoint에서 직접 고친 뒤 다시 빌드하면 직접 고친 내용이 덮어써짐
+- 사진 교체 시: `source/`에 원본을 넣고 `work/prep.sh` 실행 후 다시 빌드(`work/dims.json`도 함께 갱신됨)
+- 저장소 루트의 `CLAUDE.md`에 문구 방침과 덱 제작 규칙(빈 텍스트 창 금지, 이미지 비율 유지 등)이 있음

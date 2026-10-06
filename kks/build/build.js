@@ -4,7 +4,9 @@
 // 색: 보이드 블랙 / 앨범 크림 / 크라프트 브라운(포토 코너) / 갠지 링 시안 / 필름 날짜 오렌지
 const path = require("path");
 const pptxgen = require("pptxgenjs");
-const { applyTheme } = require(process.env.PPTX_SKILL + "/scripts/apply_theme.js");
+// 테마 색 적용 스크립트(pptx 스킬)는 있을 때만 사용. 없으면 건너뛰며 슬라이드 모양은 같음
+let applyTheme = null;
+try { if (process.env.PPTX_SKILL) ({ applyTheme } = require(process.env.PPTX_SKILL + "/scripts/apply_theme.js")); } catch (e) { applyTheme = null; }
 
 const IMG = path.join(__dirname, "../work/img");
 const DIMS = require("../work/dims.json");
@@ -506,6 +508,7 @@ pres.addSection({ title: "마무리" });
 
 (async () => {
   await pres.writeFile({ fileName: OUT });
-  await applyTheme(OUT, THEME);
+  if (applyTheme) await applyTheme(OUT, THEME);
+  else console.log("PPTX_SKILL 없음: 테마 색 적용 단계 건너뜀");
   console.log("written", OUT);
 })();
